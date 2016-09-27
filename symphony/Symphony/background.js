@@ -40,6 +40,19 @@ paragon.app.runtime.onLaunched.addListener(function() {
                 var isMinimizeOnCloseChecked = !!(config && config.isMinimizeOnCloseChecked &&
                         (typeof config.isMinimizeOnCloseChecked === 'boolean' || config.isMinimizeOnCloseChecked.toLowerCase() === 'true'));
 
+                // this value will be used if local storage doesn't have a value
+                var isLaunchOnStartupChecked = !!(config && config.isLaunchOnStartupChecked &&
+                        (typeof config.isLaunchOnStartupChecked === 'boolean' || config.isLaunchOnStartupChecked.toLowerCase() === 'true'));
+
+                // read from local storage
+                paragon.storage.local.get('isLaunchOnStartupChecked', function (value, err, errMsg) {
+
+                    // if local storage has value, it should override
+                    if (value && typeof value.isLaunchOnStartupChecked === 'boolean') {
+                        isLaunchOnStartupChecked = value.isLaunchOnStartupChecked;
+                    }
+                });
+
                 // read from local storage
                 paragon.storage.local.get('isMinimizeOnCloseChecked', function (value, err, errMsg) {
 
@@ -53,7 +66,8 @@ paragon.app.runtime.onLaunched.addListener(function() {
                         minimizeOnClose: 1021,
                         editShortcuts: 1031,
                         exit: 1041,
-                        about: 1051
+                        about: 1051,
+                        launchOnStartup: 1061
                     };
 
                     var createParams = {
@@ -61,6 +75,7 @@ paragon.app.runtime.onLaunched.addListener(function() {
                         autoSaveLocation: true,
                         outerBounds: settings.outerBounds,
                         minimizeOnClose: isMinimizeOnCloseChecked,
+                        launchOnStartup: isLaunchOnStartupChecked,
                         hotKeysEnabled: settings.hotkeys[0].isEnabled,
                         frame: {
                             systemMenu: {
@@ -74,6 +89,12 @@ paragon.app.runtime.onLaunched.addListener(function() {
                                     enabled: true,
                                     checkable: true,
                                     isChecked: isMinimizeOnCloseChecked
+                                }, {
+                                    header: 'Launch on startup',
+                                    id: systemMenu.launchOnStartup,
+                                    enabled: true,
+                                    checkable: true,
+                                    isChecked: isLaunchOnStartupChecked
                                 }, {
                                     header: 'Edit Shortcuts',
                                     id: systemMenu.editShortcuts,
@@ -107,6 +128,10 @@ paragon.app.runtime.onLaunched.addListener(function() {
                                     case systemMenu.minimizeOnClose:
                                         createdWindow.setMinimizeOnClose(checked);
                                         paragon.storage.local.set({ isMinimizeOnCloseChecked: checked });
+                                        break;
+                                    case systemMenu.launchOnStartup:
+                                        createdWindow.setLaunchOnStartup(checked);
+                                        paragon.storage.local.set({ isLaunchOnStartupChecked: checked });
                                         break;
                                     case systemMenu.editShortcuts:
                                         symphony.settings.showEditHotKeysDialog(settings.hotkeys[0]);
@@ -186,6 +211,7 @@ function getLocalAppSettings() {
         'migrated',
         'outerBounds',
         'isMinimizeOnCloseChecked',
+        'isLaunchOnStartupChecked',
         'windowState',
         'hotkeys',
         'notifications'
