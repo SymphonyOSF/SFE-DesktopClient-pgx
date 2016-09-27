@@ -42,7 +42,6 @@
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="DESKTO~1|DesktopFolder" IsPseudoRoot="1"/>
     <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="PROGRA~1|ProgramMenuFolder" IsPseudoRoot="1"/>
-    <ROW Directory="StartupFolder" Directory_Parent="TARGETDIR" DefaultDir="STARTU~1|StartupFolder" IsPseudoRoot="1"/>
     <ROW Directory="Symphony_Dir" Directory_Parent="ProgramMenuFolder" DefaultDir="Symphony"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="apps_Dir" Directory_Parent="APPDIR" DefaultDir="apps"/>
@@ -187,7 +186,7 @@
     <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
-    <ROW DigitalCertificate="Wrapper.Windows.Product.RSA.pkcs12.pfx" TimeStampUrl="http://timestamp.comodoca.com/authenticode" SignerDescription="[|ProductName]" DescriptionUrl="https://www.symphony.com" SignOptions="7" SignTool="0" UseSha256="1" Password="4A99BAA4D493EE030480AF53BA42EA11CCFB627AB1800400DA9692073D68C522A10A4FD0B5F78525294E51AC7194D55B5EE1D31F"/>
+    <ROW DigitalCertificate="Wrapper.Windows.Product.RSA.pkcs12.pfx" TimeStampUrl="http://timestamp.comodoca.com/authenticode" SignerDescription="[|ProductName]" DescriptionUrl="https://www.symphony.com" SignOptions="0" SignTool="0" UseSha256="1" Password="4A99BAA4D493EE030480AF53BA42EA11CCFB627AB1800400DA9692073D68C522A10A4FD0B5F78525294E51AC7194D55B5EE1D31F"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
     <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
@@ -402,7 +401,6 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
     <ROW Shortcut="MinuetShortcut" Directory_="DesktopFolder" Name="SYMPHO~1|Symphony Shortcut" Component_="paragon.exe" Target="[#paragon.exe]" Arguments="/start-app=&quot;[#Symphony.pgx]&quot;" Description="Shortcut to Symphony Application" Hotkey="0" Icon_="symphonylogo.exe" IconIndex="0" ShowCmd="1" WkDir="paragon_Dir"/>
     <ROW Shortcut="MinuetShortcut_1" Directory_="Symphony_Dir" Name="Symphony" Component_="paragon.exe" Target="[#paragon.exe]" Arguments="/start-app=&quot;[#Symphony.pgx]&quot;" Description="Shortcut to Symphony Application" Hotkey="0" Icon_="symphonylogo.exe" IconIndex="0" ShowCmd="1" WkDir="paragon_Dir"/>
-    <ROW Shortcut="Symphony" Directory_="StartupFolder" Name="Symphony" Component_="paragon.exe" Target="[#paragon.exe]" Arguments="/start-app=&quot;[#Symphony.pgx]&quot;" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="paragon_Dir"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
