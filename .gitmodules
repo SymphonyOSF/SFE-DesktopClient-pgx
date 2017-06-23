@@ -1,3 +1,4 @@
 [submodule "vendor/SFE-Minuet-DesktopClient"]
 	path = vendor/SFE-Minuet-DesktopClient
 	url = https://github.com/symphonyoss/SFE-Minuet-DesktopClient.git
+	branch = CEFv57WithPERC
